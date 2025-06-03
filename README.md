@@ -1,57 +1,104 @@
-import streamlit as st
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>종합검진 추천</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    label { display: block; margin-top: 10px; }
+    button { margin-top: 20px; }
+    .result { margin-top: 20px; background: #f0f0f0; padding: 10px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>종합검진 선택검사 추천</h1>
 
-def recommend_equipment_tests(age, gender, diseases, family_history):
-    recommendations = []
+  <label>나이:
+    <input type="number" id="age" min="0" max="120">
+  </label>
 
-    # 나이 기반
-    if age >= 50:
-        recommendations.append("대장내시경")
-    if age >= 40:
-        recommendations.append("위내시경")
-    if age >= 55:
-        recommendations.append("저선량 폐CT")
+  <label>성별:
+    <select id="gender">
+      <option>남성</option>
+      <option>여성</option>
+    </select>
+  </label>
 
-    # 성별 기반
-    if gender == "여성" and ("자궁경부암" in family_history or age >= 20):
-        recommendations.append("자궁경부세포검사")
-        recommendations.append("골반 초음파")
-    if gender == "남성" and age >= 50:
-        recommendations.append("전립선 초음파")
+  <label>본인 질환:
+    <select id="diseases" multiple size="5">
+      <option>고혈압</option>
+      <option>당뇨</option>
+      <option>고지혈증</option>
+      <option>간질환</option>
+      <option>폐질환</option>
+    </select>
+  </label>
 
-    # 질환 기반
-    if "고지혈증" in diseases or "심장질환" in family_history:
-        recommendations.append("심장초음파")
-        recommendations.append("심장 CT")
+  <label>가족력:
+    <select id="family" multiple size="5">
+      <option>심장질환</option>
+      <option>폐암</option>
+      <option>자궁경부암</option>
+      <option>간암</option>
+    </select>
+  </label>
 
-    if "간질환" in diseases:
-        recommendations.append("복부 초음파")
-        recommendations.append("간 MRI")
+  <button onclick="recommend()">검사 추천 보기</button>
 
-    if "폐질환" in diseases or "폐암" in family_history:
-        recommendations.append("흉부 CT")
+  <div class="result" id="result"></div>
 
-    if "당뇨" in diseases:
-        recommendations.append("안과검사(망막 OCT)")
+  <script>
+    function getSelectValues(select) {
+      return Array.from(select.selectedOptions).map(opt => opt.value);
+    }
 
-    return list(set(recommendations))
+    function recommend() {
+      const age = parseInt(document.getElementById('age').value);
+      const gender = document.getElementById('gender').value;
+      const diseases = getSelectValues(document.getElementById('diseases'));
+      const family = getSelectValues(document.getElementById('family'));
 
-st.title("종합검진 선택검사 추천 프로그램 (장비검사 중심)")
+      const recommendations = new Set();
 
-age = st.number_input("나이", min_value=0, max_value=120, step=1)
-gender = st.selectbox("성별", ["남성", "여성"])
-diseases = st.multiselect("본인 질환", ["고혈압", "당뇨", "고지혈증", "간질환", "폐질환"])
-family_history = st.multiselect("가족력", ["심장질환", "폐암", "자궁경부암", "간암"])
+      if (age >= 50) recommendations.add("대장내시경");
+      if (age >= 40) recommendations.add("위내시경");
+      if (age >= 55) recommendations.add("저선량 폐CT");
 
-if st.button("검사 추천 보기"):
-    results = recommend_equipment_tests(age, gender, diseases, family_history)
-    if results:
-        st.subheader("추천 검사 항목:")
-        for item in results:
-            st.write(f"- {item}")
-    else:
-        st.info("추천되는 장비 기반 검사는 현재 조건에서는 없습니다.")
+      if (gender === "여성" && (family.includes("자궁경부암") || age >= 20)) {
+        recommendations.add("자궁경부세포검사");
+        recommendations.add("골반 초음파");
+      }
 
-        for r in results:
-            st.markdown(f"- {r}")
-    else:
-        st.info("현재 입력 조건에 맞는 추가 장비검사는 없습니다. 기본검진을 참고하세요.")
+      if (gender === "남성" && age >= 50) {
+        recommendations.add("전립선 초음파");
+      }
+
+      if (diseases.includes("고지혈증") || family.includes("심장질환")) {
+        recommendations.add("심장초음파");
+        recommendations.add("심장 CT");
+      }
+
+      if (diseases.includes("간질환")) {
+        recommendations.add("복부 초음파");
+        recommendations.add("간 MRI");
+      }
+
+      if (diseases.includes("폐질환") || family.includes("폐암")) {
+        recommendations.add("흉부 CT");
+      }
+
+      if (diseases.includes("당뇨")) {
+        recommendations.add("망막 OCT");
+      }
+
+      const result = document.getElementById('result');
+      if (recommendations.size === 0) {
+        result.innerHTML = "추천할 장비 기반 검사가 없습니다.";
+      } else {
+        result.innerHTML = "<strong>추천 검사 항목:</strong><ul>" +
+          [...recommendations].map(item => `<li>${item}</li>`).join("") + "</ul>";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,9 +1,9 @@
-# -import streamlit as st
+import streamlit as st
 
 def recommend_equipment_tests(age, gender, diseases, family_history):
     recommendations = []
 
-    # 나이 기반 추천
+    # 나이 기반
     if age >= 50:
         recommendations.append("대장내시경")
     if age >= 40:
@@ -11,7 +11,7 @@ def recommend_equipment_tests(age, gender, diseases, family_history):
     if age >= 55:
         recommendations.append("저선량 폐CT")
 
-    # 성별 및 가족력 기반
+    # 성별 기반
     if gender == "여성" and ("자궁경부암" in family_history or age >= 20):
         recommendations.append("자궁경부세포검사")
         recommendations.append("골반 초음파")
@@ -35,24 +35,22 @@ def recommend_equipment_tests(age, gender, diseases, family_history):
 
     return list(set(recommendations))
 
-# 웹 UI 구성
-st.title("종합검진 선택검사 항목 추천 (장비검사 중심)")
+st.title("종합검진 선택검사 추천 프로그램 (장비검사 중심)")
 
 age = st.number_input("나이", min_value=0, max_value=120, step=1)
 gender = st.selectbox("성별", ["남성", "여성"])
-diseases = st.multiselect(
-    "본인이 알고 있는 질환",
-    ["고혈압", "당뇨", "고지혈증", "간질환", "폐질환", "기타"]
-)
-family_history = st.multiselect(
-    "가족력",
-    ["심장질환", "폐암", "자궁경부암", "간암", "기타"]
-)
+diseases = st.multiselect("본인 질환", ["고혈압", "당뇨", "고지혈증", "간질환", "폐질환"])
+family_history = st.multiselect("가족력", ["심장질환", "폐암", "자궁경부암", "간암"])
 
-if st.button("추천 검사 보기"):
+if st.button("검사 추천 보기"):
     results = recommend_equipment_tests(age, gender, diseases, family_history)
     if results:
-        st.subheader("추천 장비검사 항목:")
+        st.subheader("추천 검사 항목:")
+        for item in results:
+            st.write(f"- {item}")
+    else:
+        st.info("추천되는 장비 기반 검사는 현재 조건에서는 없습니다.")
+
         for r in results:
             st.markdown(f"- {r}")
     else:

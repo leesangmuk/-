@@ -2,16 +2,18 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>종합검진 추천</title>
+  <title>종합검진 선택검사 추천기</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; }
-    label { display: block; margin-top: 10px; }
-    button { margin-top: 20px; }
-    .result { margin-top: 20px; background: #f0f0f0; padding: 10px; border-radius: 6px; }
+    body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 2rem; }
+    h1 { color: #2c3e50; }
+    label { display: block; margin-top: 1rem; }
+    select, input { width: 100%; padding: 0.5rem; margin-top: 0.5rem; }
+    button { margin-top: 1.5rem; padding: 0.8rem 1.2rem; background: #27ae60; color: white; border: none; cursor: pointer; }
+    .result { margin-top: 2rem; background: #ecf0f1; padding: 1rem; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <h1>종합검진 선택검사 추천</h1>
+  <h1>종합검진 선택검사 추천기</h1>
 
   <label>나이:
     <input type="number" id="age" min="0" max="120">
@@ -24,7 +26,7 @@
     </select>
   </label>
 
-  <label>본인 질환:
+  <label>본인 질환 (여러 개 선택 가능):
     <select id="diseases" multiple size="5">
       <option>고혈압</option>
       <option>당뇨</option>
@@ -34,7 +36,7 @@
     </select>
   </label>
 
-  <label>가족력:
+  <label>가족력 (여러 개 선택 가능):
     <select id="family" multiple size="5">
       <option>심장질환</option>
       <option>폐암</option>
@@ -48,15 +50,16 @@
   <div class="result" id="result"></div>
 
   <script>
-    function getSelectValues(select) {
+    function getSelectedValues(select) {
       return Array.from(select.selectedOptions).map(opt => opt.value);
     }
 
     function recommend() {
       const age = parseInt(document.getElementById('age').value);
       const gender = document.getElementById('gender').value;
-      const diseases = getSelectValues(document.getElementById('diseases'));
-      const family = getSelectValues(document.getElementById('family'));
+      const diseases = getSelectedValues(document.getElementById('diseases'));
+      const family = getSelectedValues(document.getElementById('family'));
+      const resultBox = document.getElementById('result');
 
       const recommendations = new Set();
 
@@ -91,14 +94,18 @@
         recommendations.add("망막 OCT");
       }
 
-      const result = document.getElementById('result');
       if (recommendations.size === 0) {
-        result.innerHTML = "추천할 장비 기반 검사가 없습니다.";
+        resultBox.innerHTML = "<strong>추천할 장비 기반 검사가 없습니다.</strong>";
       } else {
-        result.innerHTML = "<strong>추천 검사 항목:</strong><ul>" +
-          [...recommendations].map(item => `<li>${item}</li>`).join("") + "</ul>";
+        resultBox.innerHTML = "<strong>추천 검사 항목:</strong><ul>" +
+          Array.from(recommendations).map(item => `<li>${item}</li>`).join("") +
+          "</ul>";
       }
     }
+  </script>
+</body>
+</html>
+
   </script>
 </body>
 </html>

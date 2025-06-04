@@ -16,57 +16,16 @@
     .vat-box input { width: 100%; padding: 8px; margin-top: 5px; border-radius: 6px; border: none; font-size: 16px; }
     .vat-box button { margin-top: 15px; padding: 10px 15px; font-weight: bold; border: none; border-radius: 6px; background: white; color: #0059a5; cursor: pointer; }
     .vat-box .result { margin-top: 20px; background: #e0f2ff; padding: 10px; border-radius: 8px; color: #003b71; font-weight: bold; }
-
-    .bmi-form-container {
-      background: #f9f9f9;
-      padding: 2em;
-      border-radius: 12px;
-      max-width: 600px;
-      margin: auto;
-    }
+    .bmi-form-container { background: #f9f9f9; padding: 2em; border-radius: 12px; max-width: 600px; margin: auto; }
     .bmi-form-container h1 { font-size: 24px; font-weight: bold; }
     .bmi-form-container label { display: block; margin-top: 1em; font-weight: bold; }
-    .bmi-form-container input, .bmi-form-container select {
-      margin-top: 0.5em;
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
+    .bmi-form-container input, .bmi-form-container select { margin-top: 0.5em; width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; }
     .button-group { display: flex; gap: 10px; margin-top: 20px; }
-    .button-group button {
-      flex: 1;
-      padding: 10px;
-      font-size: 16px;
-      background: #eee;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .result {
-      margin-top: 1.5em;
-      font-size: 1.2em;
-      font-weight: bold;
-      white-space: pre-line;
-    }
-    .blood-check-box {
-      text-align: center;
-      margin-top: 1.5em;
-      border: 1px solid #999;
-      padding: 1em;
-      border-radius: 8px;
-    }
-    .blood-check-box .title {
-      background: #dbe4ff;
-      padding: 0.2em;
-      font-weight: bold;
-    }
-    .blood-check-box .status {
-      font-size: 3em;
-      font-weight: bold;
-      margin: 0.5em 0;
-    }
+    .button-group button { flex: 1; padding: 10px; font-size: 16px; background: #eee; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; }
+    .result { margin-top: 1.5em; font-size: 1.2em; font-weight: bold; white-space: pre-line; }
+    .blood-check-box { text-align: center; margin-top: 1.5em; border: 1px solid #999; padding: 1em; border-radius: 8px; }
+    .blood-check-box .title { background: #dbe4ff; padding: 0.2em; font-weight: bold; }
+    .blood-check-box .status { font-size: 3em; font-weight: bold; margin: 0.5em 0; }
     .blood-check-box.normal { background: #e0f0ff; }
     .blood-check-box.overweight { background: #ffffcc; }
     .blood-check-box.obese { background: #ffb3b3; }
@@ -74,9 +33,9 @@
 </head>
 <body>
   <div class="tab-buttons">
-    <button class="tab-btn active" onclick="switchTab(event, 'vat')">부가세계산기</button>
-    <button class="tab-btn" onclick="switchTab(event, 'bmi')">학생 비만도 계산기</button>
-    <button class="tab-btn" onclick="switchTab(event, 'blood')">혈액형 확률 계산기</button>
+    <button class="tab-btn active" data-tab="vat">부가세계산기</button>
+    <button class="tab-btn" data-tab="bmi">학생 비만도 계산기</button>
+    <button class="tab-btn" data-tab="blood">혈액형 확률 계산기</button>
   </div>
 
   <div class="tab-section active" id="tab-vat">
@@ -102,10 +61,6 @@
         <div class="result" id="supplyResult"></div>
       </div>
     </div>
-    <footer style="margin-top: 3em; text-align: center;">
-      <p style="color: #555; font-size: 1.8em; font-weight: bold;">종합검진 예약은 검진라인에서 간편하게!</p>
-      <a href="https://www.sjcore.co.kr" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #0059ff; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 0.5em;">검진라인 바로가기</a>
-    </footer>
   </div>
 
   <div class="tab-section" id="tab-bmi">
@@ -117,9 +72,6 @@
           <option value="female">여자</option>
         </select>
       </label>
-      <label>생년월일:
-        <input type="date" id="birthdate">
-      </label>
       <label>키 (cm):
         <input type="number" id="height">
       </label>
@@ -128,19 +80,10 @@
       </label>
       <div class="button-group">
         <button onclick="calculateBMI()">계산하기</button>
-        <button onclick="resetForm()">다시하기</button>
+        <button onclick="resetBMIForm()">다시하기</button>
       </div>
       <div class="result" id="bmiResult"></div>
-      <div class="blood-check-box" id="bloodCheckBox" style="display:none">
-        <div class="title">혈액검사 여부</div>
-        <div class="status" id="bloodStatus"></div>
-        <div class="label" id="bloodLabel"></div>
-      </div>
     </div>
-    <footer style="margin-top: 3em; text-align: center;">
-      <p style="color: #555; font-size: 1.8em; font-weight: bold;">종합검진 예약은 검진라인에서 간편하게!</p>
-      <a href="https://www.sjcore.co.kr" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #0059ff; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 0.5em;">검진라인 바로가기</a>
-    </footer>
   </div>
 
   <div class="tab-section" id="tab-blood">
@@ -168,12 +111,26 @@
   </div>
 
   <script>
-    function switchTab(evt, tabName) {
-      document.querySelectorAll('.tab-section').forEach(e => e.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(e => e.classList.remove('active'));
-      document.getElementById('tab-' + tabName).classList.add('active');
-      evt.currentTarget.classList.add('active');
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tabSections = document.querySelectorAll('.tab-section');
+
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+
+          tabButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          tabSections.forEach(section => {
+            section.classList.remove('active');
+            if (section.id === 'tab-' + target) {
+              section.classList.add('active');
+            }
+          });
+        });
+      });
+    });
 
     function calcFromTotal() {
       const total = parseFloat(document.getElementById("totalInput").value);
@@ -220,7 +177,7 @@
       document.getElementById("bmiResult").innerText = `BMI 지수는 ${bmi.toFixed(1)}로, ${category}입니다.`;
     }
 
-    function resetForm() {
+    function resetBMIForm() {
       document.getElementById("height").value = "";
       document.getElementById("weight").value = "";
       document.getElementById("bmiResult").innerText = "";
@@ -246,7 +203,10 @@
 
       const result = allCombinations[key];
       const box = document.getElementById("bloodResult");
-
+      if (!result) {
+        box.innerText = "해당 조합은 계산할 수 없습니다.";
+        return;
+      }
       const lines = Object.entries(result).map(([type, percent]) => `${type}형: ${percent}%`);
       box.innerText = `자녀의 혈액형 가능성:\n` + lines.join("\n");
     }

@@ -120,7 +120,6 @@
   <div class="section">
     <h3>본인 병력</h3>
     <div class="horizontal-box">
-      <label><input type="checkbox" value="결핵"> 결핵</label>
       <label><input type="checkbox" value="간염"> 간염</label>
       <label><input type="checkbox" value="간장질환"> 간장질환</label>
       <label><input type="checkbox" value="고혈압"> 고혈압</label>
@@ -180,7 +179,6 @@
       }
     }
       </script>
-    </div>
     <footer style="margin-top: 3em; text-align: center;">
       <p style="color: #555; font-size: 1.8em; font-weight: bold;">종합검진 예약은 검진라인에서 간편하게!</p>
       <a href="https://www.sjcore.co.kr" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #0059ff; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 0.5em;">검진라인 바로가기</a>

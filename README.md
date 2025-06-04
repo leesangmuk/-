@@ -1,7 +1,7 @@
 <html lang="ko" translate="no">
 <head>
   <meta charset="UTF-8">
-  <title>건강 계산기</title>
+  <title>계산기</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0 auto; max-width: 900px; padding: 2em; }
     .tab-buttons { display: flex; gap: 10px; margin-bottom: 20px; }

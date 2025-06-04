@@ -4,32 +4,65 @@
   <meta charset="UTF-8">
   <title>검사 추천 시스템</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 2em; max-width: 900px; margin: auto; }
-    h1 { font-size: 28px; margin-bottom: 1em; color: #003366; }
-    .section { margin-bottom: 2em; }
-    label { display: block; margin-top: 0.5em; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 2em;
+      max-width: 900px;
+      margin: auto;
+      background-color: #f2f6fc;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 1em;
+      color: #0059a5;
+      text-align: center;
+    }
+    .section {
+      background: white;
+      padding: 1.5em;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      margin-bottom: 2em;
+    }
+    label {
+      display: block;
+      margin-top: 0.8em;
+      font-size: 16px;
+      color: #333;
+    }
+    input[type="number"], select {
+      padding: 8px;
+      margin-top: 0.3em;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
     .result-box {
-      background: #e8f4ff;
-      padding: 1em;
-      border-radius: 8px;
-      margin-top: 1em;
+      background: #e0f2ff;
+      padding: 1.5em;
+      border-radius: 10px;
+      margin-top: 2em;
       font-weight: bold;
       color: #003366;
+      white-space: pre-line;
     }
     button {
-      margin-top: 1em;
-      padding: 10px 15px;
-      font-size: 16px;
+      margin-top: 1.5em;
+      padding: 12px 20px;
+      font-size: 18px;
       background-color: #0059a5;
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
+      display: block;
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <h1>건강검진 항목 추천 시스템</h1>
+  <h1>🩺 건강검진 항목 추천 시스템</h1>
 
   <div class="section">
     <label>나이: <input type="number" id="age" placeholder="예: 45"></label>
@@ -58,9 +91,12 @@
     <label><input type="checkbox" value="위염"> 위염</label>
     <label><input type="checkbox" value="허리디스크"> 허리디스크</label>
     <label><input type="checkbox" value="무릎관절염"> 무릎관절염</label>
+    <label><input type="checkbox" value="고혈압"> 고혈압</label>
+    <label><input type="checkbox" value="당뇨"> 당뇨</label>
+    <label><input type="checkbox" value="고지혈증"> 고지혈증</label>
   </div>
 
-  <button onclick="recommendTests()">검사 추천받기</button>
+  <button onclick="recommendTests()">📋 검사 추천받기</button>
 
   <div id="recommendResult" class="result-box"></div>
 
@@ -73,7 +109,9 @@
       '유방암': ['유방초음파'],
       '위염': ['위내시경'],
       '허리디스크': ['요추 MRI'],
-      '무릎관절염': ['관절CT']
+      '무릎관절염': ['관절CT'],
+      '당뇨': ['공복혈당 검사', '당화혈색소'],
+      '고지혈증': ['지질검사']
     };
 
     function recommendTests() {
@@ -105,7 +143,7 @@
       if (recommended.size === 0) {
         box.innerText = "추천할 검사가 없습니다. 조건을 선택해주세요.";
       } else {
-        box.innerText = "추천 검사 항목: \n- " + [...recommended].join("\n- ");
+        box.innerText = "추천 검사 항목:\n- " + [...recommended].join("\n- ");
       }
     }
   </script>

@@ -105,7 +105,6 @@
   <div class="section">
     <h3>본인 병력</h3>
     <label><input type="checkbox" value="결핵"> 결핵</label>
-    <label><input type="checkbox" value="간염"> 간염</label>
     <label><input type="checkbox" value="간장질환"> 간장질환</label>
     <label><input type="checkbox" value="고혈압"> 고혈압</label>
     <label><input type="checkbox" value="심장병"> 심장병</label>

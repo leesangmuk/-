@@ -24,12 +24,9 @@
       margin-bottom: 2em;
     }
     label {
-      display: flex;
-      align-items: center;
-      margin-top: 0.8em;
       font-size: 16px;
       color: #333;
-      gap: 0.5em;
+      margin-top: 0.5em;
     }
     input[type="number"], select {
       padding: 8px;
@@ -67,6 +64,9 @@
       flex-wrap: wrap;
     }
     .inline-box label {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
       background: #eef3fb;
       padding: 0.5em 1em;
       border-radius: 8px;
@@ -78,7 +78,13 @@
       gap: 1em 2em;
     }
     .horizontal-box label {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
       white-space: nowrap;
+    }
+    label::before, label::after {
+      content: none !important;
     }
   </style>
 </head>
@@ -176,4 +182,5 @@
   </script>
 </body>
 </html>
+
 

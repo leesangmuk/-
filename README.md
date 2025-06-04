@@ -164,6 +164,7 @@
     buttons.forEach(btn => btn.classList.remove("active"));
     document.getElementById("tab-" + type).classList.add("active");
     event.currentTarget.classList.add("active");
+    history.replaceState(null, '', '#' + type);
   }
 
   function formatWon(value) {
@@ -349,6 +350,13 @@ function resetBloodForm() {
   document.getElementById("bloodResult").innerText = "";
 }
 </script>
+window.addEventListener('load', () => {
+  const hash = location.hash.replace('#', '');
+  if (['vat', 'bmi', 'bloodtype'].includes(hash)) {
+    const targetBtn = document.querySelector(`.tab-btn[onclick*="${hash}"]`);
+    if (targetBtn) targetBtn.click();
+  }
+});
 
 </body>
 </html>

@@ -203,13 +203,16 @@
 
       const result = allCombinations[key];
       const box = document.getElementById("bloodResult");
+
       if (!result) {
-        box.innerText = "해당 조합은 계산할 수 없습니다.";
+        box.innerText = "계산 가능한 조합이 아닙니다.";
         return;
       }
+
       const lines = Object.entries(result).map(([type, percent]) => `${type}형: ${percent}%`);
       box.innerText = `자녀의 혈액형 가능성:\n` + lines.join("\n");
     }
   </script>
 </body>
 </html>
+

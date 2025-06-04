@@ -89,6 +89,7 @@
   <div class="tab-buttons">
     <button class="tab-btn active" onclick="switchTab(event, 'vat')">부가세계산기</button>
     <button class="tab-btn" onclick="switchTab(event, 'bmi')">학생 비만도 계산기</button>
+    <button class="tab-btn" onclick="switchTab(event, 'bloodtype')">혈액형 확률 계산기</button>
   </div>
 
   <div class="tab-section active" id="tab-vat">
@@ -274,10 +275,6 @@ BMI: ${bmi} → `;
     document.getElementById("bloodCheckBox").style.display = "none";
   }
 </script>
-<div class="tab-buttons">
-  <button class="tab-btn active" onclick="switchTab(event, 'vat')">부가세계산기</button>
-  <button class="tab-btn" onclick="switchTab(event, 'bmi')">학생 비만도 계산기</button>
-  <button class="tab-btn" onclick="switchTab(event, 'bloodtype')">혈액형 확률 계산기</button>
 </div>
 
 <!-- 혈액형 확률 계산기 섹션 -->

@@ -229,10 +229,53 @@
     function calculateBloodType() {
   const p1 = document.getElementById("parent1").value;
   const p2 = document.getElementById("parent2").value;
-  const sortedKey = [p1, p2].sort().join(",");
+  const key = [p1, p2].sort().join(",");
 
   const allCombinations = {
     "A,A": { A: 75, O: 25 },
+    "A,B": { A: 25, B: 25, AB: 25, O: 25 },
+    "A,AB": { A: 50, B: 25, AB: 25 },
+    "A,O": { A: 50, O: 50 },
+    "B,B": { B: 75, O: 25 },
+    "B,AB": { A: 25, B: 50, AB: 25 },
+    "B,O": { B: 50, O: 50 },
+    "AB,AB": { A: 25, B: 25, AB: 50 },
+    "AB,O": { A: 50, B: 50 },
+    "O,O": { O: 100 }
+  };
+
+  const box = document.getElementById("bloodResult");
+  const result = allCombinations[key] || allCombinations[[p1, p2].join(",")] || allCombinations[[p2, p1].join(",")];
+
+  const lines = Object.entries(result).map(([type, percent]) => `${type}형: ${percent}%`);
+  box.innerText = `자녀의 혈액형 가능성:
+` + lines.join("
+");
+},
+    "A,B": { A: 25, B: 25, AB: 25, O: 25 },
+    "A,AB": { A: 50, B: 25, AB: 25 },
+    "A,O": { A: 50, O: 50 },
+    "B,B": { B: 75, O: 25 },
+    "B,AB": { A: 25, B: 50, AB: 25 },
+    "B,O": { B: 50, O: 50 },
+    "AB,AB": { A: 25, B: 25, AB: 50 },
+    "AB,O": { A: 50, B: 50 },
+    "O,O": { O: 100 }
+  };
+
+  const box = document.getElementById("bloodResult");
+  const result = allCombinations[key];
+
+  if (!result) {
+    box.innerText = "해당 조합은 계산할 수 없습니다.";
+    return;
+  }
+
+  const lines = Object.entries(result).map(([type, percent]) => `${type}형: ${percent}%`);
+  box.innerText = `자녀의 혈액형 가능성:
+` + lines.join("
+");
+},
     "A,B": { A: 25, B: 25, AB: 25, O: 25 },
     "A,AB": { A: 50, B: 25, AB: 25 },
     "A,O": { A: 50, O: 50 },
@@ -283,3 +326,4 @@
   </script>
 </body>
 </html>
+

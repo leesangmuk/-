@@ -275,7 +275,6 @@ BMI: ${bmi} → `;
     document.getElementById("bloodCheckBox").style.display = "none";
   }
 </script>
-</div>
 
 <!-- 혈액형 확률 계산기 섹션 -->
 <div class="tab-section" id="tab-bloodtype">

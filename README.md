@@ -179,8 +179,10 @@
         box.innerText = "추천 검사 항목:\n- " + [...recommended].join("\n- ");
       }
     }
-  </script>
-</body>
-</html>
+    </div>
+    <footer style="margin-top: 3em; text-align: center;">
+      <p style="color: #555; font-size: 1.8em; font-weight: bold;">종합검진 예약은 검진라인에서 간편하게!</p>
+      <a href="https://www.sjcore.co.kr" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #0059ff; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 0.5em;">검진라인 바로가기</a>
+    </footer>
 
 

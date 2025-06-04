@@ -350,13 +350,3 @@ function resetBloodForm() {
   document.getElementById("bloodResult").innerText = "";
 }
 </script>
-window.addEventListener('load', () => {
-  const hash = location.hash.replace('#', '');
-  if (['vat', 'bmi', 'bloodtype'].includes(hash)) {
-    const targetBtn = document.querySelector(`.tab-btn[onclick*="${hash}"]`);
-    if (targetBtn) targetBtn.click();
-  }
-});
-
-</body>
-</html>

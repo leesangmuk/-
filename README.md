@@ -24,10 +24,12 @@
       margin-bottom: 2em;
     }
     label {
-      display: block;
+      display: flex;
+      align-items: center;
       margin-top: 0.8em;
       font-size: 16px;
       color: #333;
+      gap: 0.5em;
     }
     input[type="number"], select {
       padding: 8px;
@@ -65,9 +67,6 @@
       flex-wrap: wrap;
     }
     .inline-box label {
-      display: flex;
-      align-items: center;
-      gap: 0.4em;
       background: #eef3fb;
       padding: 0.5em 1em;
       border-radius: 8px;
@@ -79,9 +78,6 @@
       gap: 1em 2em;
     }
     .horizontal-box label {
-      display: flex;
-      align-items: center;
-      gap: 0.4em;
       white-space: nowrap;
     }
   </style>
@@ -119,6 +115,7 @@
     <h3>본인 병력</h3>
     <div class="horizontal-box">
       <label><input type="checkbox" value="결핵"> 결핵</label>
+      <label><input type="checkbox" value="간염"> 간염</label>
       <label><input type="checkbox" value="간장질환"> 간장질환</label>
       <label><input type="checkbox" value="고혈압"> 고혈압</label>
       <label><input type="checkbox" value="심장병"> 심장병</label>

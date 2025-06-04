@@ -1,4 +1,5 @@
-<html lang="ko" translate="no">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <title>검사 추천 시스템</title>
@@ -73,6 +74,17 @@
       border-radius: 8px;
       cursor: pointer;
     }
+    .horizontal-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em 2em;
+    }
+    .horizontal-box label {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -95,22 +107,26 @@
 
   <div class="section">
     <h3>가족력</h3>
-    <label><input type="checkbox" value="간장질환"> 간장질환</label>
-    <label><input type="checkbox" value="고혈압"> 고혈압</label>
-    <label><input type="checkbox" value="뇌졸중"> 뇌졸중</label>
-    <label><input type="checkbox" value="심장병"> 심장병</label>
-    <label><input type="checkbox" value="당뇨병"> 당뇨병</label>
+    <div class="horizontal-box">
+      <label><input type="checkbox" value="간장질환"> 간장질환</label>
+      <label><input type="checkbox" value="고혈압"> 고혈압</label>
+      <label><input type="checkbox" value="뇌졸중"> 뇌졸중</label>
+      <label><input type="checkbox" value="심장병"> 심장병</label>
+      <label><input type="checkbox" value="당뇨병"> 당뇨병</label>
+    </div>
   </div>
 
   <div class="section">
     <h3>본인 병력</h3>
-    <label><input type="checkbox" value="결핵"> 결핵</label>
-    <label><input type="checkbox" value="간장질환"> 간장질환</label>
-    <label><input type="checkbox" value="고혈압"> 고혈압</label>
-    <label><input type="checkbox" value="심장병"> 심장병</label>
-    <label><input type="checkbox" value="뇌졸중"> 뇌졸중</label>
-    <label><input type="checkbox" value="당뇨병"> 당뇨병</label>
-    <label><input type="checkbox" value="위염"> 위염</label>
+    <div class="horizontal-box">
+      <label><input type="checkbox" value="결핵"> 결핵</label>
+      <label><input type="checkbox" value="간장질환"> 간장질환</label>
+      <label><input type="checkbox" value="고혈압"> 고혈압</label>
+      <label><input type="checkbox" value="심장병"> 심장병</label>
+      <label><input type="checkbox" value="뇌졸중"> 뇌졸중</label>
+      <label><input type="checkbox" value="당뇨병"> 당뇨병</label>
+      <label><input type="checkbox" value="위염"> 위염</label>
+    </div>
   </div>
 
   <button onclick="recommendTests()">📋 검사 추천받기</button>
@@ -164,3 +180,4 @@
   </script>
 </body>
 </html>
+

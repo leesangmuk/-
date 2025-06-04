@@ -179,6 +179,7 @@
         box.innerText = "추천 검사 항목:\n- " + [...recommended].join("\n- ");
       }
     }
+      </script>
     </div>
     <footer style="margin-top: 3em; text-align: center;">
       <p style="color: #555; font-size: 1.8em; font-weight: bold;">종합검진 예약은 검진라인에서 간편하게!</p>

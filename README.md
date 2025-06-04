@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" translate="no">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <title>검사 추천 시스템</title>
@@ -59,6 +59,21 @@
       display: block;
       width: 100%;
     }
+    .inline-box {
+      display: flex;
+      gap: 1.5em;
+      margin-top: 1em;
+      flex-wrap: wrap;
+    }
+    .inline-box label {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      background: #eef3fb;
+      padding: 0.5em 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -73,27 +88,31 @@
         <option value="여자">여자</option>
       </select>
     </label>
-    <label><input type="checkbox" id="smoking"> 흡연</label>
-    <label><input type="checkbox" id="drinking"> 음주</label>
+    <div class="inline-box">
+      <label><input type="checkbox" id="smoking"> 흡연</label>
+      <label><input type="checkbox" id="drinking"> 음주</label>
+    </div>
   </div>
 
   <div class="section">
     <h3>가족력</h3>
-    <label><input type="checkbox" value="뇌졸중"> 뇌졸중</label>
-    <label><input type="checkbox" value="심근경색"> 심근경색</label>
+    <label><input type="checkbox" value="간장질환"> 간장질환</label>
     <label><input type="checkbox" value="고혈압"> 고혈압</label>
-    <label><input type="checkbox" value="간염"> 간염</label>
+    <label><input type="checkbox" value="뇌졸중"> 뇌졸중</label>
+    <label><input type="checkbox" value="심장병"> 심장병</label>
+    <label><input type="checkbox" value="당뇨병"> 당뇨병</label>
   </div>
 
   <div class="section">
     <h3>본인 병력</h3>
-    <label><input type="checkbox" value="유방암"> 유방암</label>
-    <label><input type="checkbox" value="위염"> 위염</label>
-    <label><input type="checkbox" value="허리디스크"> 허리디스크</label>
-    <label><input type="checkbox" value="무릎관절염"> 무릎관절염</label>
+    <label><input type="checkbox" value="결핵"> 결핵</label>
+    <label><input type="checkbox" value="간염"> 간염</label>
+    <label><input type="checkbox" value="간장질환"> 간장질환</label>
     <label><input type="checkbox" value="고혈압"> 고혈압</label>
-    <label><input type="checkbox" value="당뇨"> 당뇨</label>
-    <label><input type="checkbox" value="고지혈증"> 고지혈증</label>
+    <label><input type="checkbox" value="심장병"> 심장병</label>
+    <label><input type="checkbox" value="뇌졸중"> 뇌졸중</label>
+    <label><input type="checkbox" value="당뇨병"> 당뇨병</label>
+    <label><input type="checkbox" value="위염"> 위염</label>
   </div>
 
   <button onclick="recommendTests()">📋 검사 추천받기</button>
@@ -102,16 +121,14 @@
 
   <script>
     const diseaseTestMap = {
-      '뇌졸중': ['뇌 MRA', '뇌 MRI'],
-      '심근경색': ['심장초음파', '관상동맥CT'],
+      '간장질환': ['간기능 혈액검사', '상복부초음파'],
       '고혈압': ['심장초음파'],
-      '간염': ['상복부초음파'],
-      '유방암': ['유방초음파'],
-      '위염': ['위내시경'],
-      '허리디스크': ['요추 MRI'],
-      '무릎관절염': ['관절CT'],
-      '당뇨': ['공복혈당 검사', '당화혈색소'],
-      '고지혈증': ['지질검사']
+      '뇌졸중': ['뇌 MRA', '뇌 MRI'],
+      '심장병': ['심장초음파', '관상동맥CT'],
+      '당뇨병': ['공복혈당 검사', '당화혈색소'],
+      '간염': ['간기능 혈액검사', '상복부초음파'],
+      '결핵': ['흉부 X선'],
+      '위염': ['위내시경']
     };
 
     function recommendTests() {
@@ -149,4 +166,3 @@
   </script>
 </body>
 </html>
-

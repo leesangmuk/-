@@ -230,7 +230,8 @@
       const p1 = document.getElementById("parent1").value;
       const p2 = document.getElementById("parent2").value;
       const key = [p1, p2].sort().join(",");
-      const combinations = {
+
+      const allCombinations = {
         "A,A": { A: 75, O: 25 },
         "A,B": { A: 25, B: 25, AB: 25, O: 25 },
         "A,AB": { A: 50, B: 25, AB: 25 },
@@ -243,7 +244,7 @@
         "O,O": { O: 100 }
       };
 
-      const result = combinations[key];
+      const result = allCombinations[key];
       const box = document.getElementById("bloodResult");
       if (!result) {
         box.innerText = "해당 조합은 계산할 수 없습니다.";
@@ -258,6 +259,7 @@
   </script>
 </body>
 </html>
+
 
 </html>
 
